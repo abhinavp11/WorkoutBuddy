@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block custom_styles %}
+<style>
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+    <br>
+{% endblock %}
+
+
+{% block mainview %}
+<div id="main_view">
+    {% if error != None %}
+        <p>ERROR - {{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        <input class="small_input" type="text" placeholder="username" name = "username">
+        <input class="small_input" type="password" placeholder="super secret password" name = "password">
+        <button type="submit" class="small_buttons">Submit</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block right_side %}
+<p class="p_standard">Haven't got an account?</p>
+<a class = "a_option" href="/sign_up">
+    <div class="option_box">SIGN UP</div>
+</a>
+
+{% endblock %}

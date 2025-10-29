@@ -1,0 +1,153 @@
+{% extends 'layout.html' %}
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+
+{% block custom_styles %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+@media screen and (max-width: 500px){
+    #main_view{
+        column-count: {{ column_num }};
+        column-rule: none;
+        }
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+}
+</style>
+
+<!--Javascript for modals and collapsible buttons (linked in Bibliography)-->
+<script>
+var coll = document.getElementsByClassName("collapsible_button");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+var modals = document.getElementsByClassName("modal");
+var modalOpenBtn = document.getElementsByClassName("modalOpenBtn");
+var currentModal = null;
+
+// Function to open modal by id
+function openModal(id) {
+  for (i = 0; i < modals.length; i++) {
+    if (modals[i].getAttribute('id') == id) {
+      currentModal = modals[i];
+      currentModal.style.display = "block";
+      break;
+    }
+  }
+}
+
+// When the user clicks the button, open modal with the same id
+modalOpenBtn.onclick = function() {
+  let currentID = modalOpenBtn.getAttribute('id');
+  openModal(currentID);
+}
+
+// When the user clicks anywhere outside of the modal or the X, close
+window.onclick = function(event) {
+  if (event.target == currentModal || event.target.getAttribute('class') == 'modalClose') {
+    currentModal.style.display = "none";
+  }
+}
+</script>
+{% endblock %}
+
+{% block mainview %}
+<div id="main_view">
+  {% if error != None %}
+      <p>ERROR - {{ error }}</p>
+  {% endif %}
+  <button id="add_weight" class="small_modalOpenBtn" onclick="openModal('add_weight')">Add weight!</button>
+  <div id="add_weight" class="modal">
+    <div class="modalContent">
+    <span class="modalClose">×</span>
+      <div>
+        <form method="POST">
+          <input class="small_input" type="text" name="add_weight" placeholder="ENTER WEIGHT">
+          <button type="submit" class="small_buttons">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--Script for the Chart from Chart.js (linked in Bibliography)-->
+  <canvas id="chart" width = "900", height="400"></canvas>
+  <script>
+      var ctx = document.getElementById("chart").getContext("2d");
+      var chart = new Chart(ctx, {
+      type: "line",
+      data: {
+          labels: {{ labels | safe }},
+          datasets: [
+              {
+                  label: "Your weight",
+                  data: {{ values | safe }},
+                  borderColor: "rgb(222, 220, 215)",
+                  lineTension: 0.1
+              }]
+      },
+      options:{
+      }
+  });
+  </script>
+</div>
+{% endblock %}
+
+{% block right_side %}
+
+
+<button id="username" class="modalOpenBtn" onclick="openModal('username')">Change username!</button>
+<div id="username" class="modal">
+  <div class="modalContent">
+  <span class="modalClose">×</span>
+    <div>
+      <form method="POST">
+        <input class="small_input" type="text" name="username" placeholder="CHOOSE NEW USERNAME...">
+        <button type="submit" class="small_buttons">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button id="password" class="modalOpenBtn" onclick="openModal('password')">Change password!</button>
+<div id="password" class="modal">
+  <div class="modalContent">
+  <span class="modalClose">×</span>
+    <div>
+      <form method="POST">
+        <input class="small_input" type="password" name="old_password" placeholder="ENTER OLD PASSWORD">
+        <input class="small_input" type="password" name="new_password" placeholder="ENTER NEW PASSWORD">
+        <button type="submit" class="small_buttons">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

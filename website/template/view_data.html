@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+
+{% block custom_styles %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+    .select_button{
+        width: 100%;
+        height: auto;
+        padding: 4%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+}
+</style>
+{% endblock %}
+
+{% block mainview %}
+
+<div id="main_view">
+    {% if exercise_selected != None: %}
+        <form method="POST">
+            <input type="submit" name="graph_type" class="select_button_floatl" value="WEIGHT">
+            <input type="submit" name="graph_type" class="select_button_floatl" value="REPS">
+            <input type="submit" name="graph_type" class="select_button_floatl" value="ESTIMATED 1RM">
+        </form>
+        {% if graph_type != None: %}
+        <!--Javascript for a Chart from Chart.js (linked in Bibliography)-->
+            <canvas id="chart" width = "900", height="400"></canvas>
+            <script>
+                var ctx = document.getElementById("chart").getContext("2d");
+                var chart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: {{ labels | safe }},
+                    datasets: [
+                        {
+                            label: "{{ graph_type }}",
+                            data: {{ values | safe }},
+                            borderColor: "rgb(222, 220, 215)",
+                            lineTension: 0.1
+                        }]
+                },
+                options:{
+                }
+            });
+            </script>
+        {% else %}
+            <p>PLEASE SELECT A CERTAIN TYPE OF GRAPH</p>
+        {% endif %}
+    {% else %}
+        <p>PLEASE SELECT AN EXERCISE</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block right_side %}
+    {% if exercise_selected == None: %}
+        <form method="POST">
+        {% for i in range(exercise_labels|length): %}
+            <input type="submit" name="select" class="select_button" value="{{ exercise_labels[i] }}">
+        <br>
+        {% endfor %}
+        </form>
+    {% else %}
+        <p class="p_standard">EXERCISE SELECTED</p>
+        <form method="POST">
+            <input type="submit" name="exit" class="select_button" value=" CHANGE EXERCISE ">
+        </form>
+    {% endif %}
+{% endblock %}

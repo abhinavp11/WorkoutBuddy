@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>WorkoutBuddy</title>
+    <link rel="stylesheet" href ="static/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c67ccfaccb.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+    <!-- Editing the styles of some of the attributes in the FullCalendar css styles to match with my css styles -->
+    <style>
+                
+        .fc .fc-button-primary:disabled {
+            background-color: rgb(16,17,18);
+            border: None;
+        }
+        .fc .fc-button-primary {
+            background-color: rgb(16,17,18);
+            border-color: rgb(222, 220, 215);
+        }
+
+        .fc .fc-button-group {
+            background-color: rgb(16,17,18);
+            border: none;
+        }
+
+        .fc .fc-button-group: hover {
+            background-color: rgb(16,17,18);
+            border-color: rgb(222, 220, 215);
+        }
+
+        .fc-h-event .fc-event-title-container{
+            background-color: rgb(222, 220, 215);
+            border-color: rgb(222, 220, 215);
+            color: rgb(16,17,18);
+            font-weight: bold;
+        }
+
+        fc-event-main-frame{
+            color: rgb(16,17,18)
+        }
+
+        .fc-h-event{
+            background-color: rgb(222, 220, 215);
+            border: 1px solid rgb(222, 220, 215);
+        }
+    </style>
+    {% block custom_styles %}{% endblock %}
+</head>
+<body>
+    <h1 id="main_title">WorkoutBuddy</h1>
+    <h2 id="sub_title"> {{ title }} </h2>
+
+    <div class="option_box_column">
+        {% block options %}{% endblock %}
+    </div>
+    <div class="main_view_column">
+        {% block mainview %}{% endblock %}
+    </div>
+    <div class="right_side_column">
+        {% block right_side %}{% endblock %}
+    </div>
+
+</body>

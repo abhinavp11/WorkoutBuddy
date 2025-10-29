@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block custom_styles %}
+<style>
+@media screen and (max-width: 500px){
+    #main_view{
+        column-count: {{ column_num }};
+        column-rule: none;
+        }
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+    <a class="a_option" href="/">
+        <p class="option_box"><-BACK</p>
+    </a>
+{% endblock %}
+
+{% block mainview %}
+<div id="main_view">
+    {% if created_weight == None: %}
+        {% if error != None %}
+            <p>ERROR - {{ error }}</p>
+        {% endif %}
+        <p>Hi there - Please enter the data in the below fields</p>
+        <form method="POST">
+            <input class="small_input" placeholder="What weight are you trying to load on the bar?" name = "target_weight">
+            <p>Please select the weight plates you have available below</p>
+            <input class="checkbox" type="checkbox" id="25" name="weights" value="25">
+            <label for="25"> 25kg </label><br>
+            <input class="checkbox" type="checkbox" id="20" name="weights" value="20">
+            <label for="20"> 20kg </label><br>
+            <input class="checkbox" type="checkbox" id="15" name="weights" value="15">
+            <label for="15"> 15kg </label><br>
+            <input class="checkbox" type="checkbox" id="10" name="weights" value="10">
+            <label for="10"> 10kg </label><br>
+            <input class="checkbox" type="checkbox" id="5" name="weights" value="5">
+            <label for="5"> 5kg </label><br>
+            <input class="checkbox" type="checkbox" id="2.5" name="weights" value="2.5">
+            <label for="2.5"> 2.5kg </label><br>
+            <input class="checkbox" type="checkbox" id="1.25" name="weights" value="1.25">
+            <label for="1.25"> 1.25kg </label><br>
+            <button type="submit" class="small_buttons">Submit</button>
+        </form>
+    {% else %}
+        <p>You can load {{ created_weight }}kg on the bar with these plates</p>
+        <p>(assuming the bar weighs 20kg)</p>
+        <p>You need to use</p>
+        {% for i in plates_used: %}
+            <p>2x {{ i }}kg plates</p>
+        {% endfor %}
+        <p>This is {{ left_over }}kg less than you requested</p>
+        <a class = "a_option" href="/">
+            <div class="small_option_box">DONE!</div>
+        </a>
+    {% endif %}
+</div>
+{% endblock %}

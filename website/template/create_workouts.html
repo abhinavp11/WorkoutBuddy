@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+{% block custom_styles %}
+<style>
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+    .column_in_main_view{
+        width:100%;
+        height:auto;
+    }
+    .modalOpenBtn{
+        width: 100%;
+        height: auto;
+        padding: 4%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+
+{% block mainview %}
+<div id="main_view">
+{% if error != None: %}
+    <p>{{ error }}</p>
+{% endif %}
+{% if workout_info == None: %}
+    <p>ENTER NAME TO START CREATION</p>
+{% else %}
+    <p>{{ workout_info }}</p>
+    {% for element in workout_exercises %}
+        <div class="collapsible_button">{{ element }}</div>
+        <div class="collapsible_content_no_pad">
+            <form method="POST">
+                <input type="submit" name="delete_exercise" class="delete_button" value="Delete {{ element }}">
+            </form>
+        </div>
+    {% endfor %}
+    <form method="POST">
+        <input type="submit" name="save" class="delete_button" value="SAVE">
+    </form>
+    <br>
+    <br>
+    {% for i in range(categories|length): %}
+        <div class="column_in_main_view">
+            <div class="collapsible_button">{{ categories[i] }}</div>
+            <div class="collapsible_content_no_pad">
+                {% for j in range(exercises[i]|length): %}
+                    <button id="{{ exercises[i][j] }}" class="modalOpenBtn" onclick="openModal('{{ exercises[i][j] }}')">{{ exercises[i][j] }}</button>
+                    <div id="{{ exercises[i][j] }}" class="modal">
+                      <div class="modalContent">
+                      <span class="modalClose">×</span>
+                        <div>
+                          <form method="POST">
+                            <input class="small_input" type="text" name="{{ exercises[i][j] }}" placeholder="CHOOSE WEIGHT...">
+                            <input class="small_input" type="text" name="{{ exercises[i][j] }}" placeholder="CHOOSE SETS...">
+                            <input class="small_input" type="text" name="{{ exercises[i][j] }}" placeholder="CHOOSE REPS...">
+                            <button type="submit" class="small_buttons">Submit</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+</div>
+{% endblock %}
+
+
+{% block right_side %}
+<h2>Customisation Panel</h2>
+{% if workout_info == None: %}
+    <form method="POST">
+        <input class="small_input" type="text" name="workout_name" placeholder="Workout Name...">
+        <button type="submit" class="buttons">Submit</button>
+    </form>
+{% else %}
+    <p class="p_standard">Workout Name Chosen!</p>
+{% endif %}
+
+
+<!-- Javascript for Modals and the collaspsible buttons (linked in Appendix)-->
+<script>
+var coll = document.getElementsByClassName("collapsible_button");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+var modals = document.getElementsByClassName("modal");
+var modalOpenBtn = document.getElementsByClassName("modalOpenBtn");
+var currentModal = null;
+
+// Function to open modal by id
+function openModal(id) {
+  for (i = 0; i < modals.length; i++) {
+    if (modals[i].getAttribute('id') == id) {
+      currentModal = modals[i];
+      currentModal.style.display = "block";
+      break;
+    }
+  }
+}
+
+// When the user clicks the button, open modal with the same id
+modalOpenBtn.onclick = function() {
+  let currentID = modalOpenBtn.getAttribute('id');
+  openModal(currentID);
+}
+
+// When the user clicks anywhere outside of the modal or the X, close
+window.onclick = function(event) {
+  if (event.target == currentModal || event.target.getAttribute('class') == 'modalClose') {
+    currentModal.style.display = "none";
+  }
+}
+</script>
+{% endblock %}

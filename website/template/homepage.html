@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+
+{% block custom_styles %}
+<style>
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: auto;
+        overflow-x: scroll;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding-top:0%;
+        padding-bottom:0%;
+        padding-left:0%;
+        padding-right: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2%;
+        border: none;
+        float:left;
+        width: auto;
+        height: auto;
+    }
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+}
+</style>
+{% endblock %}
+
+
+{% block options %}
+    <a class = "a_option" href="/View_Workouts">
+        <div class="option_box">View Workouts</div>
+    </a>
+    <a class = "a_option" href="/view_data">
+        <div class="option_box">View Progress</div>
+    </a>
+    <a class = "a_option" href="/workout_completions">
+        <div class="option_box">View Completed Workouts</div>
+    </a>
+    <a class = "a_option" href="/Create_Workouts">
+        <div class="option_box">Create New Workout</div>
+    </a>
+    <a class = "a_option" href="/View_Exercises">
+        <div class="option_box">View Exercises</div>
+    </a>
+    <a class = "a_option" href="/Log_Workouts">
+        <div class="option_box">Log Workouts</div>
+    </a>
+    <a class = "a_option" href="/barbell_calc">
+        <div class="option_box">Barbell Weight Calculator</div>
+    </a>
+{% endblock %}
+
+{% block mainview %}
+<div id="main_view">
+    <a class = "a_option" href="/schedule">
+        <div class="small_option_box">Scheduler</div>
+    </a>
+        <div id="calendar">
+            <!-- Using the FullCalendar syntax that I found in a YouTube Video -->
+            <script>
+                let calendarEl = document.getElementById
+                ('calendar');
+
+                let calendar = new FullCalendar.Calendar
+                (calendarEl, {
+                events : [
+                {% for event in events: %}
+                    {
+                        title: '{{ event.name }}',
+                        start: '{{ event.date }}',
+                    },
+                {% endfor %}
+                ]
+                });
+                calendar.render();
+            </script>
+        </div>
+    <br>
+    <br>
+    {% for element in reminders: %}
+        <div class="collapsible_button">{{ element[0] }}</div>
+        <div class="collapsible_content_no_pad">
+            {% for text in element[1]: %}
+                <p>{{ text }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Javascript for the collapsible buttons (linked in Appendix)-->
+<script>
+var coll = document.getElementsByClassName("collapsible_button");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+{% endblock %}
+
+{% block right_side %}
+    <form method="POST">
+        <button type="submit" class="small_buttons", name="log_out">Log Out</button>
+    </form>
+    <a class = "a_option" href="/user_details">
+        <div class="option_box">View User Details</div>
+    </a>
+{% endblock %}

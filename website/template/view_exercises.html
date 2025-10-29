@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block custom_styles %}
+<style>
+@media screen and (min-width: 501px){
+    #main_view{
+        column-count: {{ column_num }};
+        column-rule: none;
+        }
+}
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+    .column_in_main_view{
+        width:100%;
+        height:auto;
+
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+{% block mainview %}
+<div id="main_view">
+    {% if error != None: %}
+        <p>{{ error }}</p>
+    {% endif %}
+    {% for i in range(categories|length): %}
+        <div class="column_in_main_view">
+            <div class="collapsible_button">{{ categories[i] }}</div>
+            <div class="collapsible_content_no_pad">
+                {% for j in range(exercises[i]|length): %}
+                    <div class="collapsible_button">{{ exercises[i][j] }}</div>
+                    <div class="collapsible_content_no_pad">
+                        {% if highest_weights[i][j][1] != "You have not recorded any completions of this exercise.": %}
+                            <p>HIGHEST WEIGHT - {{ highest_weights[i][j][1][0] }}</p>
+                            <p>SETS AND REPS AT THIS WEIGHT - {{ highest_weights[i][j][1][1] }}</p>
+                            <p>ESTIMATED ONE REP MAX - {{ one_rep_maxes[i][j][1] }}kg</p>
+                            <br>
+                        {% else %}
+                            <p>{{ highest_weights[i][j][1] }}</p>
+                        {% endif %}
+                        <p>TARGET WEIGHT - {{ target_weights[i][j] }}kg</p>
+                        <button id="{{ exercises[i][j] }}" class="modalOpenBtn" onclick="openModal('{{ exercises[i][j] }}')">Change target weight!</button>
+                        <div id="{{ exercises[i][j] }}" class="modal">
+                          <div class="modalContent">
+                          <span class="modalClose">×</span>
+                            <div>
+                              <form method="POST">
+                                <input class="small_input" type="text" name="{{ exercises[i][j] }}" placeholder="CHOOSE TARGET WEIGHT...">
+                                <button type="submit" class="small_buttons">Submit</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!--Javascript for a modal and collaspible button (linked in Bibliography)-->
+<script>
+var coll = document.getElementsByClassName("collapsible_button");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+var modals = document.getElementsByClassName("modal");
+var modalOpenBtn = document.getElementsByClassName("modalOpenBtn");
+var currentModal = null;
+
+// Function to open modal by id
+function openModal(id) {
+  for (i = 0; i < modals.length; i++) {
+    if (modals[i].getAttribute('id') == id) {
+      currentModal = modals[i];
+      currentModal.style.display = "block";
+      break;
+    }
+  }
+}
+
+// When the user clicks the button, open modal with the same id
+modalOpenBtn.onclick = function() {
+  let currentID = modalOpenBtn.getAttribute('id');
+  openModal(currentID);
+}
+
+// When the user clicks anywhere outside of the modal or the X, close
+window.onclick = function(event) {
+  if (event.target == currentModal || event.target.getAttribute('class') == 'modalClose') {
+    currentModal.style.display = "none";
+  }
+}
+</script>
+{% endblock %}

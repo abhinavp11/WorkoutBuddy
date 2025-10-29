@@ -1,0 +1,589 @@
+body{
+    background-color: rgb(16,17,18);
+    height: auto;
+    width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/*------------------------------------------CSS STYLES FOR TEXT ELEMENTS--------------------------------*/
+.p_standard{
+    clear: both;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+}
+
+.p_standard_green{
+    clear: both;
+    color: rgb(44, 138, 4);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+}
+
+.p_alert{
+    clear:both;
+    border-style: dashed;
+    border-color: rgb(181, 179, 174);
+    border-left-width: 3px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    padding: 3px;
+    background-color: rgb(30,30,30);
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align:left;
+}
+h2{
+    clear: both;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+}
+#main_title{
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+}
+#sub_title{
+    margin-top: 10px;
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+.input_large{
+    clear: both;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    font-size: 20px;
+}
+/*-----------------------------------END OF CSS STYLES FOR TEXT ELEMENTS-----------------------------------*/
+
+
+/*---------------------------------------CSS STYLES FOR LOGIN SECTION---------------------------------------*/
+#login{
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    margin-left: 35%;
+    float: left;
+}
+#login:hover{
+    color: white;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff;
+}
+#separator{
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    float:left;
+}
+#join{
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    float:left;
+}
+#join:hover{
+    color: white;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff;
+}
+/*---------------------------------END OF CSS STYLES FOR LOGIN SECTION-------------------------------------*/
+
+
+/*---------------------------------CSS STYLES FOR RIGHT SIDE COLUMN----------------------------------------*/
+.right_side_column{
+    width: 20%;
+    height: auto;
+    float: left;
+    overflow-x: hidden;
+    padding:5px;
+    border: 5px none;
+    border-color: red;
+}
+/*---------------------------------END OF CSS STYLES FOR RIGHT SIDE COLUMN----------------------------------*/
+
+
+/*  ------------------------------ CSS DESIGN FOR ALL OPTION BOXES AND OPTION COLUMN -------------------------------*/
+.a_option{
+    color: rgb(181, 179, 174);
+    text-decoration: none;
+}
+.a_option:hover{
+    color:white;
+}
+
+.option_box{
+    border: 5px none;
+    width: 100%;
+    height: 20px;
+    padding: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 18%;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+}
+.option_box:hover{
+    color: white;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+
+}.small-option_box{
+    border: 5px none;
+    width: 30%;
+    height: 20px;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+}
+.small-option_box:hover{
+    color: white;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+}
+.option_box_column{
+    width: 20%;
+    height: auto;
+    float: left;
+    overflow-x: hidden;
+    border: 5px none;
+    border-color: blue;
+}
+.buttons{
+    border: 5px none;
+    width: 100%;
+    height: 20px;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 18%;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    font-size:15px;
+}
+.buttons:hover{
+    color: white;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+}
+
+.small_buttons{
+    border: 3px none;
+    width: 100%;
+    height: 8px;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    font-size:15px;
+}
+.small_buttons:hover{
+    color: white;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+}
+
+/*  -------------------------------END OF CSS DESIGN FOR OPTION BOX AND OPTION COLUMN ---------------------------------------*/
+
+
+/* --------------------------------------CSS STYLES FOR MAIN VIEW AREA-------------------------------------*/
+#main_view_placeholder{
+    border: 5px solid;
+    width: 300px;
+    height: 300px;
+    padding-left:0px;
+    margin-left: 10px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+
+    position: absolute;
+    top: 28%;
+    left: 39%;
+}
+#main_view{
+
+    border: 5px solid;
+    width: 100%;
+
+    padding-left:0px;
+    padding-right:0px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
+    margin-bottom: 5%;
+
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+
+    overflow-x: hidden;
+}
+.column_in_main_view{
+    border: 5px none;
+    width: 20%;
+    height: auto;
+    float:left;
+
+    margin-bottom: 3%;
+
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+
+    overflow-x: hidden;
+
+}
+
+.main_view_column{
+    width: 60%;
+    height: auto;
+    float: left;
+    overflow-x: hidden;
+    padding:5px;
+    border: 5px none;
+    border-color: yellow;
+}
+/*-----------------------------------------END OF CSS STYLES FOR MAIN AREA---------------------------------*/
+
+
+/*-----------------------------------CSS STYLES FOR THE BOTTOM BAR------------------------------------------*/
+.bottom_bar{
+    clear:both;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    padding:5px;
+    border: 5px solid;
+    border-color: blue;
+}
+/*-----------------------------------END OF CSS STYLES FOR BOTTOM BAR---------------------------------------*/
+
+
+/*---------------------------------END OF CSS DESIGN FOR COLLAPSIBLE BUTTONS------------------------------------*/
+.collapsible_button{
+    border: 5px none;
+    width: 100%;
+    height: 6%;
+    padding: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5%;
+    margin-top: 0px;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    font-weight: bold;
+}
+.collapsible_content{
+    padding: 10px;
+    width: 100%;
+    height: 6%;
+    display: none;
+    color: rgb(181, 179, 174);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    overflow-y: scrollbar;
+}
+.collapsible_content_no_pad{
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: rgb(181, 179, 174);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    overflow-y: scrollbar;
+}
+/*----------------------------------END OF CSS STYLES FOR COLLAPSIBLE BUTTONS------------------------------------*/
+
+
+/*---------------------------------------------CSS STYLES FOR INPUT ELEMENTS---------------------------------*/
+
+.small_input{
+    border: 5px none;
+    width: 100%;
+    height: 8px;
+    padding: 8%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 9%;
+    color: white;
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+}
+
+.small_input::placeholder{
+    font-weight: bold;
+    color: rgb(181, 179, 174);
+    font-size: 15px;
+}
+
+
+.input_button{
+    width: 100%;
+    height: 6%;
+    padding: 6%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    color: white;
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+}
+.input_button:hover{
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+    /*The shadow here was taken from a website as the combination of the several layers of shadow give a glow effect */
+}
+.delete_button{
+    width: 100%;
+    height: 2%;
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    border: None;
+}
+.delete_button:hover{
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+}
+
+.select_button{
+    width: 100%;
+    height: 3%;
+    padding: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    border: None;
+}
+.select_button:hover{
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+}
+
+.select_button_floatl{
+    width: 33%;
+    height: 3%;
+    padding: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    color: rgb(222, 220, 215);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    border: none;
+    float: left;
+}
+.select_button_floatl:hover{
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #fff,
+    0 0 82px #fff,
+    0 0 92px #fff,
+    0 0 102px #fff,
+    0 0 151px #fff;
+}
+
+/*-----------------------------------------END OF CSS STYLES FOR INPUT ELEMENTS-----------------------------------------------------*/
+
+
+/*---------------------------------------SCROLL BAR STYLES---------------------------------------------------*/
+::-webkit-scrollbar {
+  width: 10px;
+  border: none;
+}
+::-webkit-scrollbar-thumb {
+  width:10px;
+  background: rgb(222, 220, 215);
+  border-radius: 10px;
+}
+/*-----------------------------------END OF SCROLL BAR STYLES---------------------------------------------*/
+
+/*---------------------------------------------MODAL POP UP STYLES------------------------------------------------------*/
+/*-------------------------STYLES WERE SLIGHTLY EDITED FROM W3SCHOOLS AND STACK OVERFLOW--------------------------------*/
+
+.modalOpenBtn{
+    border: 5px none;
+    width: 100%;
+    height: 20px;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 18%;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    font-size:15px;
+}
+
+.small_modalOpenBtn{
+    border: 5px none;
+    width: 100%;
+    height: 20px;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    color: rgb(181, 179, 174);
+    font-family: "Raleway", "consolas", sans-serif;
+    text-align: center;
+    background-color:rgb(16,17,18);
+    font-size:15px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modalContent {
+    background-color: rgb(16,17,18);
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 60%;
+    max-width: 450px;
+  }
+
+  .modalClose {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .modalClose:hover,
+  .modalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+/*-----------------------------------------------END OF MODAL STYLES-------------------------------------------*/
+
+/*-----------------------------------------MEDIA QUERIES-----------------------------------------------------*/
+@media screen and (max-width: 500px) {
+    .right_side_column{
+        clear:both;
+        width: 98%;
+    }
+    #login{
+        margin-left:40%;
+    }
+    .option_box_column{
+        width: 40%;
+    }
+    .main_view_column{
+        width: 58%;
+    }
+    .workout_button{
+        margin-left:40%;
+    }
+}
+/*----------------------------------------END OF MEDIA QUERIES-----------------------------------------------*/

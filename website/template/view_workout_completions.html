@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block custom_styles %}
+<style>
+@media screen and (min-width: 501px){
+    #main_view{
+        column-count: {{ column_num }};
+        column-rule: none;
+        }
+}
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+    .column_in_main_view{
+        width:100%;
+        height:auto;
+        border-bottom: dotted;
+    }
+
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+
+{% block mainview %}
+<div id="main_view">
+    {% if initial_data != None and secondary_data != None and (initial_data|length) != 0: %}
+        {% for i in range(0, initial_data|length): %}
+            <div class="column_in_main_view">
+                <p style="font-weight: bold;"> {{ workout_name }} </p>
+                <p>{{ initial_data[i][0] }} - {{ initial_data[i][1] }}</p>
+                <p>Exercises Completed...</p>
+                {% for element in secondary_data[i] %}
+                    <p> {{ element[0] }} - {{ element[1] }}kg</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% elif initial_data != None and secondary_data != None and (initial_data|length) == 0: %}
+        <p>You have not completed this workout. Not even once.</p>
+    {% else %}
+        <p>PLEASE SELECT A WORKOUT BUDDY</p>
+    {% endif %}
+</div>
+
+<!--Javascript for a modal and collaspsible button (linked in Bibliography)-->
+<script>
+var coll = document.getElementsByClassName("collapsible_button");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+var modals = document.getElementsByClassName("modal");
+var modalOpenBtn = document.getElementsByClassName("modalOpenBtn");
+var currentModal = null;
+
+// Function to open modal by id
+function openModal(id) {
+  for (i = 0; i < modals.length; i++) {
+    if (modals[i].getAttribute('id') == id) {
+      currentModal = modals[i];
+      currentModal.style.display = "block";
+      break;
+    }
+  }
+}
+
+// When the user clicks the button, open modal with the same id
+modalOpenBtn.onclick = function() {
+  let currentID = modalOpenBtn.getAttribute('id');
+  openModal(currentID);
+}
+
+// When the user clicks anywhere outside of the modal or the X, close
+window.onclick = function(event) {
+  if (event.target == currentModal || event.target.getAttribute('class') == 'modalClose') {
+    currentModal.style.display = "none";
+  }
+}
+</script>
+{% endblock %}
+
+
+{% block right_side %}
+{% if workout_name == None: %}
+    <form method="POST">
+    {% for i in range(workout_labels|length): %}
+        <input type="submit" name="select" class="select_button" value="{{ workout_labels[i][1] }}">
+    <br>
+    {% endfor %}
+    </form>
+{% else %}
+    <p class="p_standard">WORKOUT SELECTED</p>
+    <form method="POST">
+        <input type="submit" name="exit" class="select_button" value=" EXIT ">
+    </form>
+
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block custom_styles %}
+<style>
+@media screen and (min-width: 501px){
+    #main_view{
+        column-count: {{ column_num }};
+        column-rule: none;
+        }
+}
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+    .column_in_main_view{
+        width:100%;
+        height:auto;
+        border-bottom: dotted;
+    }
+
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+    .modalOpenBtn{
+        width: 100%;
+        height: auto;
+        padding: 4%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+
+{% block mainview %}
+<div id="main_view">
+    {% if workout_selected != None: %}
+        <form method="post">
+            <label for="schedule_workout">SCHEDULE WORKOUT NOW!!:</label>
+            <input type="date" id="schedule_workout" min="{{ current_date }}" name="schedule">
+            <input type="submit">
+        </form>
+        {% if error != None: %}
+            <p>{{ error }}</p>
+        {% endif %}
+    {% else %}
+        <p>PLEASE SELECT A WORKOUT</p>
+        <p>OR...</p>
+        <br>
+        <form method="post">
+            <label for="schedule_event">SCHEDULE OTHER EVENTS (stopping you from going to the gym):</label>
+            <input type="date" id="schedule_event" min="{{ current_date }}" name="schedule">
+            <input type="submit">
+        </form>
+        {% if error != None: %}
+            <p>{{ error }}</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block right_side %}
+    {% if workout_selected == None: %}
+        <form method="POST">
+        {% for i in range(workout_labels|length): %}
+            <input type="submit" name="select" class="select_button" value="{{ workout_labels[i][1] }}">
+        <br>
+        {% endfor %}
+        </form>
+    {% else %}
+        <p class="p_standard">WORKOUT SELECTED</p>
+        <form method="POST">
+            <input type="submit" name="exit" class="select_button" value=" CHANGE WORKOUT ">
+        </form>
+    {% endif %}
+{% endblock %}

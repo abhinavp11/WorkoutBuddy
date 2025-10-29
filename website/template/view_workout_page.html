@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block custom_styles %}
+<style>
+@media screen and (min-width: 501px){
+    #main_view{
+        column-count: {{ column_num }};
+        column-rule: none;
+        }
+}
+@media screen and (max-width: 500px){
+    .option_box_column{
+        clear:both;
+        width: 100%;
+    }
+    .main_view_column{
+        clear:both;
+        width: 100%;
+    }
+    .option_box{
+        padding: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0%;
+    }
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+    .collapsible_button:hover{
+        color: white;
+        text-shadow:
+        none;
+    }
+    .column_in_main_view{
+        width: auto;
+    }
+}
+</style>
+{% endblock %}
+
+{% block options %}
+<a class="a_option" href="/">
+    <p class="option_box"><-BACK</p>
+</a>
+{% endblock %}
+
+{% block mainview %}
+<div id="main_view">
+    <form method="POST">
+    {% for i in range(workout_labels|length): %}
+    <div class="collapsible_button">{{ workout_labels[i][0] }}</div>
+    <div class="collapsible_content">
+        {% for j in range(workout_details[i]|length): %}
+            <p>{{ workout_details[i][j] }}</p>
+        {% endfor %}
+        <input type="submit" name="{{ workout_labels[i][1] }}" class="delete_button" value="Delete {{ workout_labels[i][0] }}">
+    </div>
+    {% endfor %}
+    </form>
+</div>
+
+<!--Javascript for a collapsible button (linked in Bibliography)-->
+<script>
+var coll = document.getElementsByClassName("collapsible_button");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+{% endblock %}
+
+
