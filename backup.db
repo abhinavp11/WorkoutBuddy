@@ -1,0 +1,115 @@
+BEGIN TRANSACTION;
+CREATE TABLE "categories" (
+	"CategoryID"	INTEGER,
+	"CategoryName"	TEXT,
+	PRIMARY KEY("CategoryID")
+);
+INSERT INTO "categories" VALUES(1,'Chest');
+INSERT INTO "categories" VALUES(2,'Triceps');
+INSERT INTO "categories" VALUES(3,'Biceps');
+INSERT INTO "categories" VALUES(4,'Back');
+INSERT INTO "categories" VALUES(5,'Legs');
+INSERT INTO "categories" VALUES(6,'Shoulders');
+INSERT INTO "categories" VALUES(7,'Abs');
+CREATE TABLE "completions" (
+	"completion_id"	INTEGER,
+	"workout_id"	INTEGER,
+	"date"	INTEGER,
+	PRIMARY KEY("completion_id","workout_id")
+);
+INSERT INTO "completions" VALUES(1,14,'2023-08-09');
+INSERT INTO "completions" VALUES(1,12,'2023-08-09');
+INSERT INTO "completions" VALUES(2,12,'2023-08-09');
+CREATE TABLE "exercise_completions" (
+	"completion_id"	INTEGER,
+	"exercise_id"	INTEGER
+);
+INSERT INTO "exercise_completions" VALUES(13,10);
+INSERT INTO "exercise_completions" VALUES(13,10);
+INSERT INTO "exercise_completions" VALUES(13,10);
+CREATE TABLE "exercises" (
+	"exercise_id"	INTEGER,
+	"exercise_name"	TEXT,
+	"exercise_notes"	TEXT,
+	"category_id"	INTEGER,
+	FOREIGN KEY("category_id") REFERENCES "categories"("CategoryID"),
+	PRIMARY KEY("exercise_id")
+);
+INSERT INTO "exercises" VALUES(1,'Bicep Curls','None',3);
+INSERT INTO "exercises" VALUES(2,'Hammer Curls','None',3);
+INSERT INTO "exercises" VALUES(3,'Preacher Curls','None',3);
+INSERT INTO "exercises" VALUES(4,'Seated Incline Curls','None',3);
+INSERT INTO "exercises" VALUES(5,'Spider Curls','None',3);
+INSERT INTO "exercises" VALUES(6,'Concentration Curls','None',3);
+INSERT INTO "exercises" VALUES(7,'Lat Pulldowns','None',4);
+INSERT INTO "exercises" VALUES(8,'Barbell Rows','None',4);
+INSERT INTO "exercises" VALUES(9,'Lat Pullovers','None',4);
+INSERT INTO "exercises" VALUES(10,'Dumbell Rows','None',4);
+INSERT INTO "exercises" VALUES(11,'Wide Dumbell Rows','None',4);
+INSERT INTO "exercises" VALUES(12,'Pull Ups','None',4);
+INSERT INTO "exercises" VALUES(13,'Chin ups','None',3);
+INSERT INTO "exercises" VALUES(14,'Seated Rows','None',4);
+INSERT INTO "exercises" VALUES(15,'Deadlift','None',4);
+INSERT INTO "exercises" VALUES(16,'Rear Delt Flies','None',6);
+INSERT INTO "exercises" VALUES(17,'Flat Dumbell Press','None',1);
+INSERT INTO "exercises" VALUES(18,'Incline Dumbell Press','None',1);
+INSERT INTO "exercises" VALUES(19,'Barbell Bench Press','None',1);
+INSERT INTO "exercises" VALUES(20,'Incline Barbell Bench Press','None',1);
+INSERT INTO "exercises" VALUES(21,'Decline Dumbell Press','None',1);
+INSERT INTO "exercises" VALUES(22,'Decline Barbell Bench Press','None',1);
+INSERT INTO "exercises" VALUES(23,'Pec Fly','None',1);
+INSERT INTO "exercises" VALUES(24,'Machine Press','None',1);
+INSERT INTO "exercises" VALUES(25,'Push Ups','None',1);
+INSERT INTO "exercises" VALUES(26,'Rope Pushdowns','None',2);
+INSERT INTO "exercises" VALUES(27,'Overhead Tricep Extensions','None',2);
+INSERT INTO "exercises" VALUES(28,'Dumbell kickbacks','None',2);
+INSERT INTO "exercises" VALUES(29,'Diamond Push ups','None',2);
+INSERT INTO "exercises" VALUES(30,'Close Grip Bench press','None',2);
+INSERT INTO "exercises" VALUES(31,'Skullcrushers','None',2);
+INSERT INTO "exercises" VALUES(32,'Shoulder Press','None',6);
+INSERT INTO "exercises" VALUES(33,'Arnold Press','None',6);
+INSERT INTO "exercises" VALUES(34,'Dumbell Shoulder press','None',6);
+INSERT INTO "exercises" VALUES(35,'Machine Shoulder press','None',6);
+INSERT INTO "exercises" VALUES(36,'Lateral Raises','None',6);
+INSERT INTO "exercises" VALUES(37,'Cable Lateral raises','None',6);
+INSERT INTO "exercises" VALUES(38,'Lu raises','None',6);
+INSERT INTO "exercises" VALUES(39,'Squats','None',5);
+INSERT INTO "exercises" VALUES(40,'RDLs','None',5);
+INSERT INTO "exercises" VALUES(41,'Leg Extensions','None',5);
+INSERT INTO "exercises" VALUES(42,'Calve Raises','None',5);
+INSERT INTO "exercises" VALUES(43,'Leg Curls','None',5);
+INSERT INTO "exercises" VALUES(44,'Feet Up Bench Press','None',1);
+INSERT INTO "exercises" VALUES(45,'Close Grip Bench Press','None',1);
+INSERT INTO "exercises" VALUES(46,'Close Stance Squats','None',5);
+INSERT INTO "exercises" VALUES(47,'Sumo Squats','None',5);
+INSERT INTO "exercises" VALUES(48,'Leg press','None',5);
+CREATE TABLE "workout_exercises" (
+	"workout_id"	INTEGER,
+	"exercise_id"	INTEGER,
+	FOREIGN KEY("exercise_id") REFERENCES "exercises"("exercise_id"),
+	FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id")
+);
+INSERT INTO "workout_exercises" VALUES(12,17);
+INSERT INTO "workout_exercises" VALUES(12,18);
+INSERT INTO "workout_exercises" VALUES(12,27);
+INSERT INTO "workout_exercises" VALUES(12,26);
+INSERT INTO "workout_exercises" VALUES(12,32);
+INSERT INTO "workout_exercises" VALUES(12,36);
+INSERT INTO "workout_exercises" VALUES(13,8);
+INSERT INTO "workout_exercises" VALUES(13,10);
+INSERT INTO "workout_exercises" VALUES(14,26);
+INSERT INTO "workout_exercises" VALUES(14,17);
+INSERT INTO "workout_exercises" VALUES(13,14);
+INSERT INTO "workout_exercises" VALUES(13,14);
+CREATE TABLE "workouts" (
+	"workout_id"	INTEGER,
+	"workout_name"	TEXT,
+	CONSTRAINT "workout_id" PRIMARY KEY("workout_id")
+);
+INSERT INTO "workouts" VALUES(3,'Legs');
+INSERT INTO "workouts" VALUES(4,'Sarms');
+INSERT INTO "workouts" VALUES(6,'Chest and back');
+INSERT INTO "workouts" VALUES(12,'Push');
+INSERT INTO "workouts" VALUES(13,'Example');
+INSERT INTO "workouts" VALUES(14,'Hello Buddy');
+COMMIT;
